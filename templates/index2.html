@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dog Breed</title>
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="static/css/styles.css" rel="stylesheet" />
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    </head>
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        section {
+            background-image: url('/static/assets/img/back_ground.jpg');
+            background-repeat:repeat;
+            background-size: 50%;
+        }
+
+        .whitebg {
+            background-color: rgb(255, 255, 255);
+            background-size: 50%;
+        }
+
+        #loader {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.8;
+            background: rgb(156, 154, 154);
+            z-index: 99;
+            text-align: center;
+        }
+
+        #loader>div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 100;
+        }
+
+        #image_container {
+            outline: 2px dashed #92b0b3 ;
+            outline-offset:-10px;  
+            text-align: center;
+            transition: all .15s ease-in-out;
+            background-color: #B2DCDC;
+            border-radius: 10px;
+        }
+
+        .mb-5 {
+            margin-bottom: 0px !important;
+        }
+        
+    </style>
+
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(178, 220, 219);">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/">Dog Breed.com</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- 로딩 화면 -->
+        <div id="loader" style="display: none;">
+            <div class="spinner-border text-info position-absolute top-50 start-50" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <!-- Product section-->
+        <section class="py-1">
+            <div class="container px-4 px-lg-5 my-5" id="my_test">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <h1 class="display-5 fw-bolder">Dog Breed</h1>
+                    
+                    <!-- 드래그 앤 드롭 -->
+                    <div class="content col-md-6">
+                        <img id="image_container" class="card-img-top mb-5 mb-md-0" src="/static/image/{{fname}}" alt="..." />
+                    </div>
+
+                    <div class="col-md-6">
+                        <!-- 선택확인 클릭 반응 -->
+                        <form action="/pic" method="post" enctype="multipart/form-data">
+                            <br>
+                            <div class="form-group">
+                            <label class="btn" for="usr" style="background-color: rgb(178, 220, 219);"><b>이미지 선택</b></label>
+                            <input type="file" class="form-control" id="usr" name="selimg" style="border-color: #B2DCDC; border-width: 2px; display: none;" onchange="setThumbnail(event);">
+                            
+                            <label class="btn" for="usr2" style="background-color: rgb(178, 220, 219);"><b>사진 촬영</b></label>
+                            <input type="file" class="form-control" capture="camera" id="usr2" name="capimg" style="border-color: #B2DCDC; border-width: 2px; display: none;" onchange="setThumbnail(event);">
+                            </div>
+                            <br>
+
+                            <button id="trans" type="submit" class="btn" style="background-color: rgb(178, 220, 219);">
+                                결과 확인
+                            </button>
+
+                            <a href="/" class="btn" role="button" style="background-color: rgb(178, 220, 219);">다른 강아지 만나보기</a>
+
+                            
+                        </form>
+                        <br>
+                        
+                    </div>
+                </div>
+                <!-- 흰색 배경화면 적용 -->
+                <div class="whitebg">
+                    <!-- 결과 출력 -->
+                    <div class="row gx-4 gx-lg-5 align-items-center">
+                        
+                        <div>
+                            <hr>
+                            <h1 class="display-5 fw-bolder">해당 강아지의 품종은?</h1>
+                        </div>
+
+                        {% for dname, score, dtxt in resultTxt %}
+                        <div class="col-md-12">
+                            <div class="fs-5 mb-5">
+                                <span>{{dname}}</span>
+                                {% if score != '00.00' %}
+                                <span>확률: {{score}}%</span><br>
+                                {% endif %}
+                                <span class="lead">{{dtxt}}</span>
+                            </div>
+                            <hr>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                    <!-- 결과 출력 -->
+                    <div class="row gx-4 gx-lg-5 align-items-center">
+
+                        {% if report != [] %}
+                        <div>
+                            <h1 class="display-5 fw-bolder">주인을 찾아주세요!</h1>
+                        </div>
+                        {% endif %}
+
+                        {% for _, state, info, data, place, number, thumbnail in report %}
+                        <div class="col-md-2">
+                            <a href="http://www.angel.or.kr/view.php?code=dog&number={{number}}" target="_blank">
+                                <img src="{{thumbnail}}" alt="" style="max-width: 150px; max-height: 150px; border-radius: 8px;">
+                            </a>
+                        </div>
+
+                        <div class="col-md-10">
+                            <div class="fs-6 mb-5">
+                                <span>{{state}}동물: {{info}}</span><br>
+                                <span>{{state}}날짜: {{data}}</span><br>
+                                <span>{{state}}장소: {{place}}</span>
+                            </div>
+                        </div>
+                        <div><hr></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div id="map"></div>
+        </section>
+
+        <!-- Footer-->
+        <footer class="py-5" style="background-color: rgb(178, 220, 219);">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="static/js/scripts.js"></script>
+
+        <script>
+            function setThumbnail(event) {
+                var reader = new FileReader();
+        
+                reader.onload = function(event) {
+                var img = document.getElementById("image_container");
+                img.setAttribute("src", event.target.result);
+                }
+        
+                reader.readAsDataURL(event.target.files[0]);
+            }
+
+            $(window).on('load', function () {
+            document.getElementById('trans').onclick = function() {
+                document.getElementById("loader").style.display="block";
+            };
+            document.getElementById("loader").style.display="none";});
+
+            /* 드래그 앤 드롭 */
+            $('.content')
+                .on("dragover", dragOver)
+                .on("dragleave", dragOver)
+                .on("drop", uploadFiles);
+
+            function dragOver(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                if (e.type == "dragover") {
+                    $(e.target).css({
+                        "background-color": "mint",
+                        "outline-offset": "-20px"
+                    });
+                } else {
+                    $(e.target).css({
+                        "background-color": "mint",
+                        "outline-offset": "-10px"
+                    });
+                }
+            }
+
+            function uploadFiles(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                dragOver(e); //1
+             
+                e.dataTransfer = e.originalEvent.dataTransfer; //2
+                var files = e.target.files || e.dataTransfer.files;
+             
+                if (files.length > 1) {
+                    alert('하나만 올려주세요.');
+                    return;
+                }
+
+                if (files[0].type.match(/image.*/)) {
+                    /* 파일 선택 박스에 이미지 경로 전달 */
+                    e.preventDefault();
+                    $("input[type='file']")
+                    .prop("files", e.originalEvent.dataTransfer.files)
+                    .closest("form")
+
+                    var img = document.getElementById("image_container");
+                    img.setAttribute("src", window.URL.createObjectURL(files[0]));
+
+                } else {
+                    alert('이미지가 아닙니다.');
+                    return;
+                }
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dog Breed</title>
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="static/css/styles.css" rel="stylesheet" />
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    </head>
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        section {
+            background-image: url('/static/assets/img/back_ground.png');
+            background-repeat:repeat;
+            background-size: 50%;
+        }
+
+        .whitebg {
+            background-color: rgb(255, 255, 255);
+            background-size: 50%;
+        }
+
+        #loader {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.8;
+            background: rgb(156, 154, 154);
+            z-index: 99;
+            text-align: center;
+        }
+
+        #loader>div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 100;
+        }
+
+        #image_container {
+            outline: 2px dashed #92b0b3 ;
+            outline-offset:-10px;  
+            text-align: center;
+            transition: all .15s ease-in-out;
+            background-color: #B2DCDC;
+            border-radius: 10px;
+        }
+
+        .mb-5 {
+            margin-bottom: 0px !important;
+        }
+        
+
+        /* modal */
+        body{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        button.modal_button{
+            all : unset;
+            background-color: steelblue;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .modal{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal_overlay{
+            background-color: rgba(0,0,0,0.6);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        .modal_content{
+            background-color: white;
+            padding: 50px 100px ;
+            text-align: center;
+            position: relative;
+            border-radius: 10px;
+            width: 60%;
+            height: 80%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+        }
+
+        /* h1{
+            margin: 0;
+        } */
+
+        .hidden{
+            display: none;
+        }
+        @font-face {
+        font-family: 'KOTRAHOPE';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    </style>
+
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(178, 220, 219);">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/">Dog Breed.com</a>
+                
+            </div>
+        </nav>
+        
+        <!-- Product section-->
+        <section class="py-1">
+            <div class="container px-4 px-lg-5 my-5" id="my_test">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <h1 class="display-5 fw-bolder" style="text-align: center; font-family:KOTRAHOPE;">Dog Breed</h1>
+                    <video controls width="250" autoplay loop muted>
+                        <source src="https://nextcloud.seol-i.duckdns.org/s/QFqJSTcMmkDF8n6/download/KakaoTalk_20220324_141211740.mp4"
+                            type="video/mp4">
+                    </video>
+                    <!-- <img src="/video/1058262028-preview.gif" alt="fail"> -->
+                    <!-- <div style="margin: auto; width: auto;">
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/on09zv-ujyc?autoplay=1&mute=1&modestbranding=1&loop=1"
+                            title="YouTube video player" frameborder="0" 
+                            allow="accelerometer; autoplay ; clipboard-write; encrypted-media; gyroscope; picture-in-picture ;" allowfullscreen>
+                        </iframe>
+                    </div> -->
+                    
+            
+                </div>
+                <br>
+                <div class="col-md-6" style="text-align: center; margin:0 auto;">
+                    <a href="/main" class="btn" role="button" style="background-color: rgb(178, 220, 219); width: 220px; text-align: center;line-height: normal; font-size: 120%; font-family:KOTRAHOPE;">
+                        Go to Main
+                    </a>
+                
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer-->
+        <footer class="py-5" style="background-color: rgb(178, 220, 219);">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="static/js/scripts.js"></script>
+
+        
+
+           
+    </body>
+</html>
