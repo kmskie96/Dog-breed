@@ -152,7 +152,7 @@ def pic():
 
 if __name__ == '__main__':
     app.run(
-        host='192.168.0.2',
+        host='172.30.1.38', # 개인 ip에 맞게 수정
         port=5000,
         debug=True,             # 수정이 되면 자동으로 서버를 restart.
     )
